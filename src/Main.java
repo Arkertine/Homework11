@@ -1,6 +1,53 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
+        int thisYear = 2021;
+        printIsLeapYear(thisYear);
+        int clientOS = 0;
+        int releaseYear = 2024;
+        printRequiredAppVersion(clientOS, releaseYear);
+        int deliveryDistance = 95;
+        int deliveryDay = calculateDeliveryDays(deliveryDistance);
+        if (deliveryDay > 0) {
+            System.out.println("Потребуется для доставки дней: " + deliveryDay);
+        } else {
+            System.out.println("Доставки нет.");
+        }
     }
+
+    public static void printIsLeapYear(int year) {
+        if (year > 1584 && (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))) {
+            System.out.printf("«%s  год — високосный год».%n", year);
+        } else {
+            System.out.printf("«%s  год — невисокосный год».%n", year);
+        }
+    }
+
+    public static void printRequiredAppVersion(int clientOS, int releaseYear) {
+        if (clientOS == 0 && releaseYear < 2015) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
+        } else if (clientOS == 0 && releaseYear >= 2015) {
+            System.out.println("Установите версию приложения для iOS по ссылке.");
+        } else if (clientOS == 1 && releaseYear < 2015) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке.");
+        } else if (clientOS == 1 && releaseYear >= 2015) {
+            System.out.println("Установите версию приложения для Android по ссылке.");
+        }
+    }
+
+    public static int calculateDeliveryDays(int deliveryDistance) {
+        if (deliveryDistance <= 20) {
+            return 1;
+        }
+        else if (deliveryDistance <= 60 && deliveryDistance > 20) {
+            return 2;
+        }
+        else if (deliveryDistance <= 100 && deliveryDistance > 60) {
+            return 3;
+        } else {
+            return 0;
+        }
+    }
+
 }
