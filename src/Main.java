@@ -7,12 +7,12 @@ public class Main {
         int clientOS = 0;
         int releaseYear = 2024;
         printRequiredAppVersion(clientOS, releaseYear);
-        int deliveryDistance = 101;
+        int deliveryDistance = 95;
         int deliveryDay = calculateDeliveryDays(deliveryDistance);
-        if (deliveryDay > 3) {
-            System.out.println("Доставки нет.");
-        } else {
+        if (deliveryDay > 0) {
             System.out.println("Потребуется для доставки дней: " + deliveryDay);
+        } else {
+            System.out.println("Доставки нет.");
         }
     }
 
@@ -37,17 +37,17 @@ public class Main {
     }
 
     public static int calculateDeliveryDays(int deliveryDistance) {
-        int deliveryDay = 1;
-        if (deliveryDistance > 20) {
-            deliveryDay++;
+        if (deliveryDistance <= 20) {
+            return 1;
         }
-        if (deliveryDistance > 60) {
-            deliveryDay++;
+        else if (deliveryDistance <= 60 && deliveryDistance > 20) {
+            return 2;
         }
-        if (deliveryDistance > 100) {
-            deliveryDay++;
+        else if (deliveryDistance <= 100 && deliveryDistance > 60) {
+            return 3;
+        } else {
+            return 0;
         }
-        return deliveryDay;
     }
 
 }
